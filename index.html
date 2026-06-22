@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trattoria Sam & Meghan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Oswald:wght@400;500;600;700&family=Archivo:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#D2402A;
+    --red-deep:#A52C1A;
+    --cream:#F5EEE1;
+    --paper:#FBF6EC;
+    --ink:#D2402A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Archivo',sans-serif;
+    line-height:1.45;
+    padding:18px;
+    display:flex;
+    justify-content:center;
+  }
+  .sheet{
+    width:100%;
+    max-width:540px;
+    background:var(--paper);
+    position:relative;
+    padding:46px 30px 40px;
+    box-shadow:0 18px 50px -28px rgba(120,40,20,.55);
+  }
+  /* corner crop marks, homage to the print menu */
+  .sheet::before,.sheet::after,
+  .crop{position:absolute;width:18px;height:18px;pointer-events:none;}
+  .sheet::before{top:12px;left:12px;border-top:2px solid var(--red);border-left:2px solid var(--red);}
+  .sheet::after{top:12px;right:12px;border-top:2px solid var(--red);border-right:2px solid var(--red);}
+  .crop.bl{bottom:12px;left:12px;border-bottom:2px solid var(--red);border-left:2px solid var(--red);}
+  .crop.br{bottom:12px;right:12px;border-bottom:2px solid var(--red);border-right:2px solid var(--red);}
+
+  .eyebrow{
+    font-family:'Oswald',sans-serif;
+    font-weight:500;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    font-size:12px;
+    text-align:center;
+    padding-left:.42em;
+    color:var(--red);
+  }
+
+  /* ---- tumbling hero ---- */
+  .hero{
+    text-align:center;
+    margin:14px 0 4px;
+    line-height:.82;
+  }
+  .hero .row{display:flex;justify-content:center;align-items:flex-end;flex-wrap:wrap;}
+  .hero .ltr{
+    font-family:'Bagel Fat One',cursive;
+    color:var(--red);
+    font-size:clamp(62px,20vw,108px);
+    display:inline-block;
+    line-height:.8;
+    text-shadow:3px 3px 0 rgba(165,44,26,.16);
+    animation:drop .7s cubic-bezier(.2,.9,.3,1.2) backwards;
+  }
+  .hero .amp{
+    font-family:'Caveat',cursive;
+    font-weight:700;
+    font-size:clamp(46px,15vw,82px);
+    color:var(--red-deep);
+    line-height:.8;
+    margin:2px 6px;
+    display:inline-block;
+    transform:rotate(-8deg);
+  }
+  @keyframes drop{from{opacity:0;transform:translateY(-18px) rotate(0);}}
+
+  /* ---- lovebirds ---- */
+  .birds{display:flex;flex-direction:column;align-items:center;margin:6px 0 2px;}
+  .birds svg{width:118px;height:auto;display:block;}
+  .ancora{
+    font-family:'Caveat',cursive;
+    font-weight:700;
+    font-size:23px;
+    color:var(--red);
+    transform:rotate(-5deg);
+    margin-top:-4px;
+  }
+
+  .subtitle{
+    font-family:'Bagel Fat One',cursive;
+    color:var(--red);
+    text-align:center;
+    font-size:clamp(22px,7vw,34px);
+    letter-spacing:.01em;
+    margin:8px 0 2px;
+  }
+  .stasera{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.34em;
+    font-size:11px;
+    text-align:center;
+    padding-left:.34em;
+    color:var(--red-deep);
+    margin-bottom:8px;
+  }
+
+  .rule{
+    border:0;border-top:2px solid var(--red);
+    margin:22px 0 6px;opacity:.85;
+  }
+  .rule.thin{border-top:1px solid var(--red);opacity:.4;margin:14px 0;}
+
+  .section-label{
+    font-family:'Bagel Fat One',cursive;
+    color:var(--red);
+    font-size:24px;
+    margin:20px 0 2px;
+    display:flex;align-items:baseline;gap:10px;
+  }
+  .section-label .meta{
+    font-family:'Oswald',sans-serif;
+    font-weight:500;
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--red-deep);
+    transform:translateY(-2px);
+  }
+
+  .dish{margin:14px 0;}
+  .dish .top{
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .dish .name{
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:17px;
+    color:var(--red);
+    white-space:nowrap;
+  }
+  .dish .dots{
+    flex:1;
+    border-bottom:2px dotted var(--red);
+    transform:translateY(-4px);
+    opacity:.55;
+    min-width:18px;
+  }
+  .dish .price{
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--red-deep);
+    white-space:nowrap;
+  }
+  .dish .desc{
+    font-family:'Archivo',sans-serif;
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--red);
+    opacity:.92;
+    margin-top:3px;
+    max-width:46ch;
+  }
+  .dish .desc em{font-style:italic;}
+
+  .note-line{
+    font-family:'Caveat',cursive;
+    font-weight:700;
+    font-size:21px;
+    color:var(--red-deep);
+    text-align:center;
+    transform:rotate(-1deg);
+    margin:26px 0 6px;
+  }
+
+  .provenance{
+    font-family:'Oswald',sans-serif;
+    font-weight:400;
+    font-size:8.5px;
+    letter-spacing:.06em;
+    line-height:1.7;
+    text-transform:uppercase;
+    color:var(--red-deep);
+    opacity:.72;
+    text-align:center;
+    margin-top:18px;
+  }
+  .smallprint{
+    font-family:'Oswald',sans-serif;
+    font-weight:400;
+    font-size:9px;
+    letter-spacing:.08em;
+    line-height:1.7;
+    text-transform:uppercase;
+    color:var(--red);
+    text-align:center;
+    margin-top:14px;
+    opacity:.85;
+  }
+  .chef{
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    font-size:10px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    text-align:center;
+    color:var(--red);
+    margin-top:10px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero .ltr{animation:none;}
+  }
+</style>
+</head>
+<body>
+  <main class="sheet">
+    <span class="crop bl"></span><span class="crop br"></span>
+
+    <p class="eyebrow">Trattoria</p>
+
+    <div class="hero" aria-label="Sam and Meghan">
+      <div class="row">
+        <span class="ltr" style="transform:rotate(-7deg) translateY(4px)">S</span>
+        <span class="ltr" style="transform:rotate(3deg) translateY(-3px);animation-delay:.05s">A</span>
+        <span class="ltr" style="transform:rotate(-4deg) translateY(2px);animation-delay:.1s">M</span>
+      </div>
+      <div class="row" style="margin:-6px 0">
+        <span class="amp">&amp;</span>
+      </div>
+      <div class="row">
+        <span class="ltr" style="transform:rotate(5deg) translateY(3px);animation-delay:.15s">M</span>
+        <span class="ltr" style="transform:rotate(-3deg) translateY(-4px);animation-delay:.2s">E</span>
+        <span class="ltr" style="transform:rotate(4deg) translateY(5px);animation-delay:.25s">G</span>
+        <span class="ltr" style="transform:rotate(-5deg) translateY(-2px);animation-delay:.3s">H</span>
+        <span class="ltr" style="transform:rotate(3deg) translateY(4px);animation-delay:.35s">A</span>
+        <span class="ltr" style="transform:rotate(-6deg) translateY(-3px);animation-delay:.4s">N</span>
+      </div>
+    </div>
+
+    <div class="birds">
+      <svg viewBox="0 0 150 78" fill="none" stroke="#D2402A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- left bird, facing right -->
+        <path d="M16 70 C6 64 6 50 16 44 C24 39 38 39 46 46 C52 51 53 60 49 66"/>
+        <path d="M46 46 C48 38 53 33 60 32 L52 39 L60 41"/>
+        <circle cx="40" cy="49" r="1.6" fill="#D2402A" stroke="none"/>
+        <path d="M22 70 L22 75 M30 70 L30 75"/>
+        <!-- right bird, facing left -->
+        <path d="M134 70 C144 64 144 50 134 44 C126 39 112 39 104 46 C98 51 97 60 101 66"/>
+        <path d="M104 46 C102 38 97 33 90 32 L98 39 L90 41"/>
+        <circle cx="110" cy="49" r="1.6" fill="#D2402A" stroke="none"/>
+        <path d="M128 70 L128 75 M120 70 L120 75"/>
+        <!-- little heart between them -->
+        <path d="M75 26 C72 21 65 22 65 28 C65 33 75 39 75 39 C75 39 85 33 85 28 C85 22 78 21 75 26 Z" stroke-width="2.2"/>
+      </svg>
+      <p class="ancora">Ancora!</p>
+    </div>
+
+    <p class="subtitle">A Home-Cooked Menu</p>
+    <p class="stasera">Stasera &middot; Dinner for Two</p>
+
+    <hr class="rule">
+
+    <!-- ANTIPASTO -->
+    <div class="section-label">Antipasto <span class="meta">to start</span></div>
+
+    <div class="dish">
+      <div class="top">
+        <span class="name">Burrata, Ti Amo</span>
+        <span class="dots"></span>
+        <span class="price">xx</span>
+      </div>
+      <p class="desc">the creamiest burrata di puglia torn over peppery rocket, sweet cherry tomatoes, toasted pine nuts &amp; shaved parmigiano, bright lemon-balsamic &mdash; opened at the table, bloody godsent</p>
+    </div>
+
+    <hr class="rule thin">
+
+    <!-- IL SECONDO -->
+    <div class="section-label">Il Secondo <span class="meta">the main event &middot; for two</span></div>
+
+    <div class="dish">
+      <div class="top">
+        <span class="name">The Big One</span>
+        <span class="dots"></span>
+        <span class="price">xx</span>
+      </div>
+      <p class="desc">garlic-butter basted ribeye, seared hard for the crust, bathed in foaming butter, smashed garlic &amp; thyme, rested like it deserves</p>
+    </div>
+
+    <div class="dish">
+      <div class="top">
+        <span class="name">Mash Royale</span>
+        <span class="dots"></span>
+        <span class="price">xx</span>
+      </div>
+      <p class="desc">yukon gold mash, a frankly irresponsible amount of butter, slow-cooked garlic gone sweet, a whisper of parmigiano</p>
+    </div>
+
+    <div class="dish">
+      <div class="top">
+        <span class="name">L'Orto</span>
+        <span class="dots"></span>
+        <span class="price">xx</span>
+      </div>
+      <p class="desc">roasted vegetables, caramelised hard at the edges, olive oil, salt &amp; garlic &mdash; <em>mangia le verdure, amore</em></p>
+    </div>
+
+    <hr class="rule thin">
+
+    <!-- DOLCE -->
+    <div class="section-label">Dolce <span class="meta">the sweet finale</span></div>
+
+    <div class="dish">
+      <div class="top">
+        <span class="name">Melona, Mon Amour</span>
+        <span class="dots"></span>
+        <span class="price">xx</span>
+      </div>
+      <p class="desc">the one &amp; only strawberry melona bar, fresh macerated strawberries on the side &mdash; iconic, no notes</p>
+    </div>
+
+    <p class="note-line">cooked for you, with everything &#10084;</p>
+
+  </main>
+</body>
+</html>
